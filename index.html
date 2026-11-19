@@ -1,250 +1,103 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Raj Gupta — Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <!-- ───── NAV ───── -->
-  <nav class="nav" id="nav">
-    <a href="#" class="nav__logo">RG<span class="accent">.</span></a>
-    <ul class="nav__links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="nav__actions">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <svg class="icon sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><g stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></g></svg>
-        <svg class="icon moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
-      </button>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f7f7f2"><title>Raj Gupta | AI & Software Portfolio</title><meta name="description" content="Raj Gupta’s work in computer vision, reinforcement learning and full-stack development at Delhi Technological University."><script>const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+let selectedTheme;
+try { selectedTheme = localStorage.getItem('portfolio-theme'); } catch {}
+function applyTheme() {
+  const dark = selectedTheme ? selectedTheme === 'dark' : systemTheme.matches;
+  document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  document.querySelector('meta[name="theme-color"]').content = dark ? '#191c19' : '#f7f7f2';
+  const toggle = document.querySelector('#theme-toggle');
+  if (toggle) {
+    toggle.setAttribute('aria-pressed', String(dark));
+    toggle.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
+  }
+}
+applyTheme();
+systemTheme.addEventListener('change', applyTheme);
+document.addEventListener('DOMContentLoaded', () => {
+  applyTheme();
+  document.querySelector('#theme-toggle').addEventListener('click', () => {
+    selectedTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem('portfolio-theme', selectedTheme); } catch {}
+    applyTheme();
+  });
+});
+</script><style>:root{--paper:#f7f7f2;--ink:#21251f;--accent:#b53c1f;--line:#cdd0c5}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:25px}body{background:var(--paper);color:var(--ink);font:1rem/1.55 Inter,"Helvetica Neue",Arial,sans-serif;margin:0}header,main{width:min(1280px,90%);margin:auto}header,.brand,nav,.section-head,footer{display:flex;align-items:center}header{height:80px;border-bottom:1px solid var(--line);justify-content:space-between}.brand,nav{gap:18px}.brand{font-weight:600}a{color:inherit;text-decoration:none}a:hover{color:var(--accent)}a:focus-visible{outline:3px solid var(--accent);outline-offset:4px}nav{gap:32px;font-size:.93rem}.pill,.button{border-radius:30px;padding:8px 22px;border:1px solid var(--ink)}.hero{display:grid;grid-template-columns:1.07fr 1fr;align-items:center;gap:5%;padding:clamp(42px,5vw,78px) 0}.meta,small,.tags{font-family:"IBM Plex Mono",ui-monospace,monospace}.meta,small{font-size:.76rem;letter-spacing:.09em}.intro .meta{color:var(--accent)}h1,h2{font-family:"Baskervville",Georgia,serif;font-weight:400;letter-spacing:-.065em;line-height:1.04}h1{font-size:clamp(4.8rem,8.7vw,8rem);margin:16px 0 20px}h1 em{font-weight:400}.lead{font-size:clamp(1.3rem,1.85vw,1.8rem);line-height:1.32;max-width:440px;letter-spacing:-.03em;margin:0}.sub,.info p,.cards article>p:not(.meta){color:#52584f}.sub{max-width:470px;margin:13px 0 24px}.button{display:inline-block;background:var(--ink);color:white;font-weight:550;padding:10px 24px}.button:hover{background:var(--accent);border-color:var(--accent);color:white}.hero-art{position:relative;background-color:#eeefe6;background-image:linear-gradient(#8890791c 1px,transparent 1px),linear-gradient(90deg,#8890791c 1px,transparent 1px);background-size:24px 24px;aspect-ratio:1.5;overflow:hidden}.hero-art canvas,article canvas{width:100%;height:100%;display:block}.corner{position:absolute;width:12px;height:12px;border-color:#797d6e}.tl{left:13px;top:13px;border-top:1px solid;border-left:1px solid}.br{right:13px;bottom:13px;border-right:1px solid;border-bottom:1px solid}#work,.info,footer{border-top:1px solid var(--line)}.section-head,footer{justify-content:space-between}.section-head{padding:29px 0 24px}h2{font-size:clamp(2.6rem,4vw,4rem);margin:0}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}article canvas{height:auto;aspect-ratio:1.96}.cards .meta{color:var(--accent);margin:20px 0 8px}h3{font-size:1.35rem;line-height:1.22;letter-spacing:-.035em;margin:0}.cards article>p:not(.meta){margin:10px 0}.tags,small{font-size:.81rem;color:#53594e}.info{margin:60px 0 0;padding:48px 0;display:grid;grid-template-columns:.9fr 1fr;gap:12%}.info .meta,footer .meta{color:var(--accent)}.rows>div+div{border-top:1px solid var(--line);padding-top:18px}.rows h3{margin:7px 0}.rows strong{font-size:.94rem}.rows p{margin:7px 0 18px}footer{padding:35px 0 55px}footer a{border-bottom:1px solid;font-size:1.1rem}@media(max-width:740px){header{height:65px}nav{gap:15px}.brand{gap:9px}.pill{padding:5px 11px}.hero,.info{grid-template-columns:1fr;gap:26px}.hero{padding:34px 0}.hero-art{aspect-ratio:1.9}.cards{grid-template-columns:1fr;gap:32px}.section-head .meta{display:none}.info{margin-top:38px;padding:26px 0}footer{align-items:flex-start;gap:20px;flex-direction:column}.section-head{padding:23px 0}.intro .meta{margin:0}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
-  <!-- ───── HERO ───── -->
-  <header class="hero" id="hero">
-    <div class="hero__content">
-      <p class="hero__greeting">Hi, I'm</p>
-      <h1 class="hero__name">Raj Gupta<span class="accent">.</span></h1>
-      <p class="hero__tagline">AI / ML Engineer &amp; Full-Stack Developer</p>
-      <p class="hero__sub">B.Tech IT @ Delhi Technological University · Building intelligent systems with deep learning, generative AI &amp; modern web technologies.</p>
-      <div class="hero__cta">
-        <a href="#projects" class="btn btn--primary">View Projects</a>
-        <a href="raj_gupta_resume.pdf" download class="btn btn--outline">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Resume
-        </a>
-      </div>
-    </div>
-    <div class="hero__visual">
-      <div class="orb orb--1"></div>
-      <div class="orb orb--2"></div>
-      <div class="orb orb--3"></div>
-    </div>
-  </header>
-
-  <!-- ───── ABOUT ───── -->
-  <section class="section" id="about">
-    <div class="section__inner">
-      <h2 class="section__title">About Me</h2>
-      <div class="about__grid">
-        <div class="about__text">
-          <p>I'm a pre-final year <strong>Information Technology</strong> student at <strong>Delhi Technological University</strong> passionate about the intersection of <strong>AI/ML</strong> and <strong>software engineering</strong>.</p>
-          <p>I build end-to-end applications — from training deep learning models in PyTorch to shipping polished React interfaces. My interests span <strong>Generative AI</strong>, <strong>Computer Vision</strong>, <strong>Reinforcement Learning</strong>, and <strong>NLP</strong>.</p>
-          <p>When I'm not coding, you'll find me grinding <strong>350+ DSA problems</strong> on LeetCode.</p>
-        </div>
-        <div class="about__stats">
-          <div class="stat-card">
-            <span class="stat-card__number">350+</span>
-            <span class="stat-card__label">LeetCode Problems</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-card__number">7.89</span>
-            <span class="stat-card__label">CGPA @ DTU</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-card__number">3+</span>
-            <span class="stat-card__label">AI/ML Projects</span>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ───── EXPERIENCE ───── -->
-  <section class="section section--alt" id="experience">
-    <div class="section__inner">
-      <h2 class="section__title">Experience</h2>
-      <div class="timeline">
-        <div class="timeline__item">
-          <div class="timeline__dot"></div>
-          <div class="timeline__card">
-            <span class="timeline__date">Sep 2025 – Nov 2025</span>
-            <h3>Software Developer Intern <span class="muted">— Delhi Technological University (USIP)</span></h3>
-            <ul>
-              <li>Developed a responsive professor portfolio website using HTML, CSS, and JavaScript to showcase academic profiles, publications, and achievements.</li>
-              <li>Designed a mobile-friendly, multi-section interface with improved navigation, accessibility, and user experience across devices.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ───── PROJECTS ───── -->
-  <section class="section" id="projects">
-    <div class="section__inner">
-      <h2 class="section__title">Projects</h2>
-      <div class="projects__grid">
-
-        <article class="project-card">
-          <div class="project-card__header">
-            <svg class="project-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-            <div class="project-card__links">
-              <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.17c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6.02 0c2.28-1.55 3.28-1.23 3.28-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.19.7.8.58A12.01 12.01 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
-            </div>
-          </div>
-          <h3 class="project-card__title">Real-Time AI Gym Trainer</h3>
-          <p class="project-card__desc">AI-powered fitness app using MediaPipe Pose to track 33 body landmarks for real-time exercise tracking, pose estimation, and rep counting. Features an LLM-powered conversational coach with voice feedback.</p>
-          <div class="project-card__tags">
-            <span>Python</span><span>MediaPipe</span><span>Streamlit</span><span>SQLite</span><span>LLM</span>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-card__header">
-            <svg class="project-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-            <div class="project-card__links">
-              <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.17c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6.02 0c2.28-1.55 3.28-1.23 3.28-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.19.7.8.58A12.01 12.01 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
-            </div>
-          </div>
-          <h3 class="project-card__title">Neural Style Transfer (AdaIN)</h3>
-          <p class="project-card__desc">Full-stack MERN application serving an AdaIN-based neural style transfer pipeline. Trained a custom VGG-19 decoder with content and style losses for real-time artistic style transfer.</p>
-          <div class="project-card__tags">
-            <span>React</span><span>Node.js</span><span>PyTorch</span><span>VGG-19</span><span>MongoDB</span>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-card__header">
-            <svg class="project-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-            <div class="project-card__links">
-              <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.17c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6.02 0c2.28-1.55 3.28-1.23 3.28-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.19.7.8.58A12.01 12.01 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
-            </div>
-          </div>
-          <h3 class="project-card__title">Flappy Bird AI Agent</h3>
-          <p class="project-card__desc">Deep Q-Network (DQN) agent that learns to play Flappy Bird via reinforcement learning. Implements experience replay, target network, and ε-greedy exploration for stable training.</p>
-          <div class="project-card__tags">
-            <span>Python</span><span>PyTorch</span><span>DQN</span><span>Gymnasium</span><span>RL</span>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ───── SKILLS ───── -->
-  <section class="section section--alt" id="skills">
-    <div class="section__inner">
-      <h2 class="section__title">Skills</h2>
-      <div class="skills__grid">
-        <div class="skill-group">
-          <h3 class="skill-group__title">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a4 4 0 0 0-4 4v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2h-2V6a4 4 0 0 0-4-4z"/></svg>
-            Generative AI & NLP
-          </h3>
-          <div class="skill-group__tags">
-            <span>LLMs</span><span>Agentic AI</span><span>Transformers</span><span>Fine-Tuning</span><span>NLP</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <h3 class="skill-group__title">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4M4.22 4.22l2.83 2.83m9.9 9.9l2.83 2.83M1 12h4m14 0h4M4.22 19.78l2.83-2.83m9.9-9.9l2.83-2.83"/></svg>
-            Deep Learning & ML
-          </h3>
-          <div class="skill-group__tags">
-            <span>Deep Learning</span><span>Machine Learning</span><span>Computer Vision</span><span>CNNs</span><span>Reinforcement Learning</span><span>DQN</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <h3 class="skill-group__title">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 17l6-6-6-6"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-            Frameworks & Libraries
-          </h3>
-          <div class="skill-group__tags">
-            <span>React</span><span>Node.js</span><span>Express.js</span><span>PyTorch</span><span>Scikit-Learn</span><span>Pandas</span><span>NumPy</span><span>MediaPipe</span><span>OpenCV</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <h3 class="skill-group__title">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-            Languages & Databases
-          </h3>
-          <div class="skill-group__tags">
-            <span>C++</span><span>Python</span><span>JavaScript</span><span>C</span><span>SQL</span><span>MySQL</span><span>MongoDB</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ───── CONTACT ───── -->
-  <section class="section" id="contact">
-    <div class="section__inner">
-      <h2 class="section__title">Get In Touch</h2>
-      <p class="contact__sub">Have a project in mind or just want to say hi? Drop me a message.</p>
-      <form class="contact__form" id="contactForm">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="John Doe" required />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="john@example.com" required />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
-        </div>
-        <button type="submit" class="btn btn--primary btn--full">
-          Send Message
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
-      </form>
-    </div>
-  </section>
-
-  <!-- ───── FOOTER ───── -->
-  <footer class="footer">
-    <div class="footer__inner">
-      <div class="footer__socials">
-        <a href="https://linkedin.com/in/" target="_blank" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77A1.75 1.75 0 0 0 0 1.73v20.54A1.75 1.75 0 0 0 1.77 24h20.45A1.76 1.76 0 0 0 24 22.27V1.73A1.76 1.76 0 0 0 22.22 0z"/></svg>
-        </a>
-        <a href="https://github.com/" target="_blank" aria-label="GitHub">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.17c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6.02 0c2.28-1.55 3.28-1.23 3.28-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.19.7.8.58A12.01 12.01 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        </a>
-        <a href="mailto:rajg22710@gmail.com" aria-label="Email">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4l-10 8L2 4"/></svg>
-        </a>
-      </div>
-      <p class="footer__copy">Designed & Built by Raj Gupta · © 2025</p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>
+#theme-toggle{display:grid;place-items:center;width:40px;height:40px;padding:0;border:1px solid var(--line);border-radius:50%;color:var(--ink);background:transparent;cursor:pointer}
+#theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+#theme-toggle:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.sun,[data-theme=dark] .moon{display:none}
+[data-theme=dark] .sun{display:inline}
+[data-theme=dark]{color-scheme:dark;--paper:#191c19;--ink:#efefe8;--accent:#ff9b79;--line:#444a40}
+[data-theme=dark] :is(.sub,.info p,.cards article>p:not(.meta),.tags,small){color:#bdc4b9}
+[data-theme=dark] .button{color:var(--paper)}
+[data-theme=dark] .hero-art{background-color:#292e27;background-image:linear-gradient(#adb59d1a 1px,transparent 1px),linear-gradient(90deg,#adb59d1a 1px,transparent 1px)}
+@media(max-width:420px){nav{gap:9px}.pill{padding:4px 8px}#theme-toggle{width:36px;height:36px}}
+</style></head>
+<body><header><a class="brand" href="#top" aria-label="Raj Gupta, home">Raj Gupta</a><nav aria-label="Main navigation"><a href="#work">Work</a><a href="#about">About</a><a class="pill" href="#contact">Contact</a><button id="theme-toggle" type="button" aria-label="Dark mode" aria-pressed="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path class="moon" d="M20.8 14.2A9 9 0 0 1 9.8 3.2a9 9 0 1 0 11 11Z"/><g class="sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></g></svg></button></nav></header>
+<main id="top"><section class="hero"><div class="intro"><p class="meta">AI / ML &amp; SOFTWARE DEVELOPMENT</p><h1>Raj <em>Gupta.</em></h1><p class="lead">I build software that learns from movement, images, and play.</p><p class="sub">Information Technology student at Delhi Technological University, working across machine learning and full-stack development.</p><a class="button" href="#work">Explore my work</a></div><div class="hero-art"><canvas id="torus" role="img" aria-label="Sculptural orange wireframe knot on a drafting grid"></canvas><span class="corner tl"></span><span class="corner br"></span></div></section>
+<section id="work"><div class="section-head"><h2>Selected work</h2><span class="meta">ACADEMIC PROJECTS</span></div><div class="cards">
+<article><canvas id="pose" aria-label="Illustration of a tracked human pose" role="img"></canvas><p class="meta">COMPUTER VISION</p><h3>Real-Time AI Gym Trainer</h3><p>A fitness coach that tracks 33 body landmarks, counts reps, and gives spoken workout guidance.</p><div class="tags">Python · MediaPipe Pose · LLM</div></article>
+<article><canvas id="style" aria-label="Illustration of a landscape transformed into color strokes" role="img"></canvas><p class="meta">GENERATIVE VISION</p><h3>Neural Style Transfer</h3><p>A web app that combines the content of one image with the style of another using AdaIN and a custom decoder.</p><div class="tags">PyTorch · VGG-19 · MERN</div></article>
+<article><canvas id="bird" aria-label="Pixel bird flying between pipes" role="img"></canvas><p class="meta">REINFORCEMENT LEARNING</p><h3>Flappy Bird AI Agent</h3><p>A Deep Q-Network learns when to flap through trial and error, using experience replay and a target network.</p><div class="tags">Python · PyTorch · Gymnasium</div></article></div></section>
+<section id="about" class="info"><div><p class="meta">BACKGROUND</p><h2>About me</h2><p>I study Information Technology at DTU. Alongside my coursework, I’ve solved 350+ data structures and algorithms problems in C++ and led a five-person team in the university round of Smart India Hackathon 2024.</p></div><div class="rows"><div><small>SEP – NOV 2025</small><h3>Software Developer Intern</h3><strong>Delhi Technological University · USIP</strong><p>Built a responsive faculty portfolio for academic profiles, publications, and achievements using HTML, CSS, and JavaScript.</p></div><div><small>2023 – 2027 · ONGOING</small><h3>B.Tech in Information Technology</h3><strong>Delhi Technological University</strong><p>CGPA: 7.89</p></div></div></section>
+<footer id="contact"><div><p class="meta">CONTACT</p><h2>Get in touch.</h2></div><a href="mailto:rajg22710@gmail.com">rajg22710@gmail.com</a></footer></main><script>'use strict';
+function surface(id,w,h){
+  const canvas=document.getElementById(id);
+  canvas.width=w*2; canvas.height=h*2;
+  const ctx=canvas.getContext('2d');ctx.scale(2,2);return ctx;
+}
+const tau=Math.PI*2;
+function line(c,points,color,width=1){
+  c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.strokeStyle=color;c.lineWidth=width;c.stroke();
+}
+function fill(c,color,x,y,w,h){c.fillStyle=color;c.fillRect(x,y,w,h)}
+function knot(){
+  const c=surface('torus',600,400), faces=[];
+  function center(t){const r=1.25+.46*Math.cos(3*t);return [r*Math.cos(2*t),r*Math.sin(2*t),.84*Math.sin(3*t)]}
+  function unit(v){return v.map(x=>x/Math.hypot(...v))}
+  function cross(a,b){return [a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]]}
+  function point(t,a){
+    const p=center(t), next=center(t+.001),dir=unit(next.map((v,i)=>v-p[i])), nx=unit(cross(dir,[0,0,1])),ny=cross(dir,nx);
+    const [x,y,z]=p.map((v,i)=>v+.37*(nx[i]*Math.cos(a)+ny[i]*Math.sin(a)));
+    return [300+108*(x*.96-y*.28),199+103*(x*.18+y*.65-z*.73),y*.73+z*.68];
+  }
+  for(let i=0;i<156;i++)for(let j=0;j<22;j++){
+    const v=[[i,j],[i+1,j],[i+1,j+1],[i,j+1]].map(([a,b])=>point(tau*a/156,tau*b/22));
+    faces.push({v,z:v.reduce((s,p)=>s+p[2],0)/4});
+  }
+  faces.sort((a,b)=>a.z-b.z).forEach(({v,z})=>{
+    c.beginPath();v.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.closePath();
+    c.fillStyle='hsl(20 81% '+(72+z*8)+'%)';c.fill();c.strokeStyle='#a23c22';c.lineWidth=.74;c.stroke();
+  });
+}
+function pose(){
+  const c=surface('pose',480,245);fill(c,'#233a34',0,0,480,245);
+  for(let x=0;x<480;x+=15)for(let y=0;y<245;y+=15)fill(c,'#52645a',x,y,1.2,1.2);
+  const p=[[240,39],[234,71],[207,84],[187,112],[162,84],[259,79],[285,100],[314,66],[215,143],[249,144],[176,170],[168,213],[278,168],[304,208]];
+  [[0,1,2,3,4],[1,5,6,7],[2,8,9,5,2],[8,10,11],[9,12,13]].forEach(path=>line(c,path.map(i=>p[i]),'#c5e5a9',3));
+  p.forEach(([x,y])=>{c.beginPath();c.arc(x,y,4.2,0,tau);c.fillStyle='#eff8b9';c.fill()});
+  [[138,31,1,1],[337,31,-1,1],[138,219,1,-1],[337,219,-1,-1]].forEach(([x,y,h,v])=>line(c,[[x+14*h,y],[x,y],[x,y+14*v]],'#abc6ad'));
+}
+function landscape(){
+  const c=surface('style',480,245);fill(c,'#dfb89a',0,0,480,245);
+  let seed=33;function rand(){seed=(seed*1664525+1013904223)>>>0;return seed/4294967296}
+  const colors=['#e7c8a6','#edaa76','#cc7355','#9a5960','#715063','#443d53'];
+  for(let row=0;row<6;row++){for(let x=-4;x<485;x+=2){let y=row===0?0:33+row*26+Math.sin(x/95+row*.78)*24+Math.sin(x/43+row)*11;
+    fill(c,colors[row],x,y,3,246-y);
+    for(let k=0;k<3;k++){let yy=y+rand()*31;line(c,[[x,yy],[x+3+rand()*8,yy-1-rand()*3]],'rgba(255,222,175,.38)',1.6)}
+  }}
+}
+function bird(){
+  const c=surface('bird',480,245);fill(c,'#c9dadd',0,0,480,245);
+  for(const [x,y] of [[35,46],[201,32],[355,74]]){fill(c,'#e9eeea',x,y,66,9);fill(c,'#e9eeea',x+13,y-8,32,9)}
+  for(const [x,top,bottom] of [[57,55,153],[334,77,176]]){
+    for(const [y,h] of [[0,top],[bottom,245-bottom]]){fill(c,'#334d46',x,y,39,h);fill(c,'#83a780',x+3,y,33,h);fill(c,'#abc2a1',x+7,y,6,h)}
+    for(const y of [top-12,bottom]){fill(c,'#334d46',x-4,y,47,13);fill(c,'#8faf89',x-1,y+3,41,7)}
+  }
+  const pixels=['   xxxx   ',' xxooooxx ','xoooyywwkx','xyyyoywwkx',' xxooorrrr','   xxxx   '],pal={x:'#343c37',o:'#e89c48',y:'#f6d882',w:'#fff9df',k:'#343c37',r:'#bd5734'};
+  pixels.forEach((r,i)=>[...r].forEach((v,j)=>{if(pal[v])fill(c,pal[v],212+j*5,97+i*5,5,5)}));
+}
+knot();pose();landscape();bird();
+</script></body></html>
